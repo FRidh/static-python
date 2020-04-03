@@ -6,6 +6,9 @@ This repository contains a recipe for building a statically-linked Python
 interpreter using Musl. The build is performed using the Nix package manager.
 Dependencies are provided by Nixpkgs as well as the base recipe for Python.
 
+The purpose for these builds is to have interpreters available that can be used
+on any GNU/Linux OS, without Nix.
+
 ## Building interpreters
 
 To build an interpreter

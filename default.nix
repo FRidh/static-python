@@ -11,11 +11,17 @@ let
   ];
 
   # Build an interpreter by overriding the Nixpkgs recipe.
-  buildInterpreter = interpreter: interpreter.override {
+  buildInterpreter = interpreter: (interpreter.override {
     rebuildBytecode = false;
     stripBytecode = true;
     x11Support = false; # TODO set to true to include tkinter
-  };
+  }).overrideAttrs(oldAttrs: {
+    patches = [];  # Remove Nix-specific patches
+    passthru = {};  # No longer relevant
+    postFixup = ''
+      rm -rf $out/nix-support
+    '';
+  });
 
   buildTarball = attribute: interpreter: pkgs.runCommand "${attribute}.tar.gz" {
     buildInputs = with pkgs; [ gnutar gzip ];
