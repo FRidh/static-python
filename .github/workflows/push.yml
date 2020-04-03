@@ -1,0 +1,15 @@
+name: "Tests"
+on:
+  push:
+    branches:
+      - master
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Nix
+        uses: cachix/install-nix-action@v8
+      - name: Build all interpreters
+        run: nix-build -A interpreters
