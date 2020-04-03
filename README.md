@@ -18,4 +18,11 @@ To build a tarball containing the interpreter
 
 ## Binary cache
 
-Tarballs and build-time closures are [cached](https://app.cachix.org/cache/static-python) using [Cachix](https://cachix.org/).
+Tarballs and build-time closures are
+[cached](https://app.cachix.org/cache/static-python) using
+[Cachix](https://cachix.org/).
+
+## Download builds
+
+CI automatically uploads the tarballs containing interpreters. Go to the (latest)
+CI run, and click on the Artifacts drop-down button.
