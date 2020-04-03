@@ -15,3 +15,7 @@ To build an interpreter
 To build a tarball containing the interpreter
 
     nix-build -A tarballs.python38
+
+## Binary cache
+
+Tarballs and build-time closures are [cached](https://app.cachix.org/cache/static-python) using [Cachix](https://cachix.org/).
