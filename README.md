@@ -1,5 +1,7 @@
 # Static Python
 
+![Tests](https://github.com/FRidh/static-python/workflows/Tests/badge.svg?branch=master)
+
 This repository contains a recipe for building a statically-linked Python
 interpreter using Musl. The build is performed using the Nix package manager.
 Dependencies are provided by Nixpkgs as well as the base recipe for Python.
