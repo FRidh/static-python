@@ -17,3 +17,10 @@ jobs:
           name: static-python
           attributes: tarballs depsToCache
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+      - name: Prepare uploads
+        run: mkdir -p uploads; for interpreter in python37 python38 python39; do cp $(nix-build -A tarballs.${interpreter}) "uploads/${interpreter}.tar.gz"; done
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: Interpreters
+          path: uploads
