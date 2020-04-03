@@ -28,6 +28,15 @@ let
 
   tarballs = pkgs.lib.mapAttrs buildTarball interpreters;
 
+  # Cache the following build-time dependencies for CI
+  cacheDeps = attribute: interpreter: pkgs.closureInfo {
+    # It's better to use `nix-store -qR` but then we need to use cachix explicitly to push
+    # This should be good enough
+    rootPaths = interpreter.nativeBuildInputs ++ interpreter.propagatedBuildInputs;
+  };
+
+  depsToCache =  pkgs.lib.mapAttrsToList cacheDeps interpreters;
+
 in {
-  inherit interpreters tarballs;
+  inherit interpreters tarballs depsToCache;
 }

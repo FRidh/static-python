@@ -15,5 +15,5 @@ jobs:
         uses: cachix/cachix-action@v5
         with:
           name: static-python
-          attributes: tarballs
+          attributes: tarballs depsToCache
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
