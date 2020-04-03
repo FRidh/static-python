@@ -17,9 +17,17 @@ let
     x11Support = false; # TODO set to true to include tkinter
   };
 
+  buildTarball = attribute: interpreter: pkgs.runCommand "${attribute}.tar.gz" {
+    buildInputs = with pkgs; [ gnutar gzip ];
+  } ''
+    tar -zcvf $out -C ${interpreter} .
+  '';
+
   # Build interpreters for each of the listed attributes.
   interpreters = with pkgs.lib; listToAttrs (map (attribute: {name = attribute; value = buildInterpreter pkgs.pkgsStatic.${attribute};}) attributes);
 
+  tarballs = pkgs.lib.mapAttrs buildTarball interpreters;
+
 in {
-  inherit interpreters;
+  inherit interpreters tarballs;
 }

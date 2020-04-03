@@ -11,5 +11,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Nix
         uses: cachix/install-nix-action@v8
-      - name: Build all interpreters
-        run: nix-build -A interpreters
+      - name: Build all interpreters and tarballs
+        run: nix-build -A interpreters -A tarballs
